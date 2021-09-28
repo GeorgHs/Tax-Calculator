@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.ghertzsch.taxapi.entity.Product;
-import com.ghertzsch.taxapi.resources.ProductResources;
+import com.ghertzsch.taxapi.entity.Computation;
+import com.ghertzsch.taxapi.resources.ComputationResources;
 
 import io.vertx.config.ConfigRetriever;
 import io.vertx.core.AbstractVerticle;
@@ -75,7 +75,7 @@ public class FormalAPIVerticle extends AbstractVerticle {
 		router.route().handler(CookieHandler.create());
 		
 		// Create ProductResource object
-		ProductResources productResources = new ProductResources();
+		ComputationResources productResources = new ComputationResources();
 		
 		// Map subrouter for Products
 		router.mountSubRouter("/api/", productResources.getAPISubRouter(vertx));

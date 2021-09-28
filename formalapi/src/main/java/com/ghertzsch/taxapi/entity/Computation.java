@@ -1,12 +1,12 @@
 package com.ghertzsch.taxapi.entity;
 
-public class Product {
+public class Computation {
 
 	private String id;
 	private String number;
 	private String description;
 
-	public Product(String id, String number, String description) {
+	public Computation(String id, String number, String description) {
 		this.id = id;
 		this.number = number;
 		this.description = description;

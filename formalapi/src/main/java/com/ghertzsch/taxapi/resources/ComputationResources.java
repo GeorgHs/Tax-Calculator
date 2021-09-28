@@ -3,7 +3,7 @@ package com.ghertzsch.taxapi.resources;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ghertzsch.taxapi.entity.Product;
+import com.ghertzsch.taxapi.entity.Computation;
 
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpHeaders;
@@ -15,9 +15,9 @@ import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
 
-public class ProductResources {
+public class ComputationResources {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ProductResources.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ComputationResources.class);
 
 	
 	public Router getAPISubRouter(Vertx vertx) {
@@ -27,18 +27,17 @@ public class ProductResources {
 		// API routing
 		apiSubRouter.route("/*").handler(this::defaultProcessorForAllAPI);
 		
-		apiSubRouter.route("/v1/products*").handler(BodyHandler.create());
-		apiSubRouter.get("/v1/products").handler(this::getAllProducts);
-		apiSubRouter.get("/v1/products/:id").handler(this::getProductById);
-		apiSubRouter.post("/v1/products").handler(this::addProduct);
-		apiSubRouter.put("/v1/products/:id").handler(this::updateProductById);
-		apiSubRouter.delete("/v1/products/:id").handler(this::deleteProductById);
+		apiSubRouter.route("/v1/calculator*").handler(BodyHandler.create());
+		apiSubRouter.get("/v1/calculator").handler(this::getAllComputations);
+		apiSubRouter.get("/v1/calculator/:id").handler(this::getComputationById);
+		apiSubRouter.post("/v1/calculator").handler(this::addComputation);
+		apiSubRouter.put("/v1/calculator/:id").handler(this::updateComputationById);
+		apiSubRouter.delete("/v1/calculator/:id").handler(this::deleteComputationById);
 		
 		return apiSubRouter;
 	}
 	
 	
-	// Called for all default API HTTP GET, POST, PUT and DELETE
 	public void defaultProcessorForAllAPI(RoutingContext routingContext) {
 		
 		String authToken = routingContext.request().getHeader("AuthToken");
@@ -61,15 +60,15 @@ public class ProductResources {
 		
 	}
 	
-	// Get all products as array of products
-	public void getAllProducts(RoutingContext routingContext) {
+
+	public void getAllComputations(RoutingContext routingContext) {
 		
 		JsonObject responseJson = new JsonObject();
 	
-		Product firstItem = new Product("112233", "123", "My item 123");
-		Product secondItem = new Product("11334455", "321", "My item 321");
+		Computation firstItem = new Computation("112233", "123", "My item 123");
+		Computation secondItem = new Computation("11334455", "321", "My item 321");
 		
-		List<Product> products = new ArrayList<Product>();
+		List<Computation> products = new ArrayList<Computation>();
 		
 		products.add(firstItem);
 		products.add(secondItem);
@@ -83,14 +82,14 @@ public class ProductResources {
 
 	}
 	
-	// Get one products that matches the input id and return as single json object
-	public void getProductById(RoutingContext routingContext) {
+
+	public void getComputationById(RoutingContext routingContext) {
 		
 		final String productId = routingContext.request().getParam("id");
 		
 		String number = "123";
 		
-		Product firstItem = new Product(productId, number, "My item " + number);
+		Computation firstItem = new Computation(productId, number, "My item " + number);
 		
 		routingContext.response()
 		.setStatusCode(200)
@@ -101,8 +100,7 @@ public class ProductResources {
 		
 	}
 	
-	// Insert one item passed in from the http post body return what was added with unique id from the insert
-	public void addProduct(RoutingContext routingContext) {
+	public void addComputation(RoutingContext routingContext) {
 		
 		JsonObject jsonBody = routingContext.getBodyAsJson();
 		
@@ -111,7 +109,7 @@ public class ProductResources {
 		String number = jsonBody.getString("number");
 		String description = jsonBody.getString("description");
 		
-		Product newItem = new Product("", number, description);
+		Computation newItem = new Computation("", number, description);
 		
 		// Add into database and get unique id
 		newItem.setId("556677");
@@ -124,8 +122,7 @@ public class ProductResources {
 		
 	}
 	
-	// Update the item based on the url product id and return update product info
-	public void updateProductById(RoutingContext routingContext) {
+	public void updateComputationById(RoutingContext routingContext) {
 		
 		final String productId = routingContext.request().getParam("id");
 		
@@ -135,7 +132,7 @@ public class ProductResources {
 		String number = jsonBody.getString("number");
 		String description = jsonBody.getString("description");
 		
-		Product updatedItem = new Product(productId, number, description);
+		Computation updatedItem = new Computation(productId, number, description);
 
 		routingContext.response()
 		.setStatusCode(200)
@@ -145,8 +142,7 @@ public class ProductResources {
 		
 	}
 	
-	// Delete item and return 200 on success or 400 on fail
-	public void deleteProductById(RoutingContext routingContext) {
+	public void deleteComputationById(RoutingContext routingContext) {
 		
 		final String productId = routingContext.request().getParam("id");
 

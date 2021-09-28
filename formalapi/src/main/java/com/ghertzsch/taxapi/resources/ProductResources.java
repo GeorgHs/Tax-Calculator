@@ -65,24 +65,7 @@ public class ProductResources {
 	public void getAllProducts(RoutingContext routingContext) {
 		
 		JsonObject responseJson = new JsonObject();
-		
-//		JsonArray items = new JsonArray();
-
-		
-//		JsonObject firstItem = new JsonObject();
-//		firstItem.put("number", "123");
-//		firstItem.put("description", "My item 123");
-//		
-//		items.add(firstItem);
-//		
-//		JsonObject secondItem = new JsonObject();
-//		secondItem.put("number", "321");
-//		secondItem.put("description", "My item 321");
-//		
-//		items.add(secondItem);
-//		
-//		responseJson.put("products", items);
-		
+	
 		Product firstItem = new Product("112233", "123", "My item 123");
 		Product secondItem = new Product("11334455", "321", "My item 321");
 		
@@ -97,11 +80,6 @@ public class ProductResources {
 			.setStatusCode(200)
 			.putHeader("content-type", "application/json")
 			.end(Json.encodePrettily(responseJson));
-
-//		routingContext.response()
-//		.setStatusCode(400)
-//		.putHeader("content-type", "application/json")
-//		.end(Json.encodePrettily(new JsonObject().put("error", "Could not find all products")));
 
 	}
 	

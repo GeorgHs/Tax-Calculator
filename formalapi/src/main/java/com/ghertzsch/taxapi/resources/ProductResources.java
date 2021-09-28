@@ -1,9 +1,9 @@
-package com.tjay.formalapi.resources;
+package com.ghertzsch.taxapi.resources;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.tjay.formalapi.entity.Product;
+import com.ghertzsch.taxapi.entity.Product;
 
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpHeaders;

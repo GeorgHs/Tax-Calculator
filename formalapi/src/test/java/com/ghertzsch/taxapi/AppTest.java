@@ -1,4 +1,4 @@
-package com.tjay.formalapi;
+package com.ghertzsch.taxapi;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

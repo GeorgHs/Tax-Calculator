@@ -1,4 +1,4 @@
-package com.tjay.formalapi.entity;
+package com.ghertzsch.taxapi.entity;
 
 public class Product {
 

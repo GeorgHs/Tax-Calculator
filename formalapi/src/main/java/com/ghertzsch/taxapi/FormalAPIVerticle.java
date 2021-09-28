@@ -1,4 +1,4 @@
-package com.tjay.formalapi;
+package com.ghertzsch.taxapi;
 
 
 import java.io.File;
@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.tjay.formalapi.entity.Product;
-import com.tjay.formalapi.resources.ProductResources;
+import com.ghertzsch.taxapi.entity.Product;
+import com.ghertzsch.taxapi.resources.ProductResources;
 
 import io.vertx.config.ConfigRetriever;
 import io.vertx.core.AbstractVerticle;
